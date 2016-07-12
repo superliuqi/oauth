@@ -1,0 +1,305 @@
+@import "reset";
+@import "common";
+html,body{
+    height: 100%;
+    width: 100%;
+}
+a{
+    color:inherit;
+}
+
+input:-webkit-autofill { 
+    -webkit-box-shadow: 0 0 0px 1000px #333 inset;
+    -webkit-text-fill-color:#fff;
+}
+
+.content-car-bg {
+    position: relative;
+    left: 50%;
+    top: 50%;
+    -webkit-transform: translateY(-50%) translateX(-50%);
+
+    @extend %hundredPercent;
+    background: #333;
+    .error-remind{
+        display: none;
+
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 30px;
+
+        background: #fff;
+        opacity: .7;
+        filter: alpha(opacity=70);
+
+        color: #000;
+        font-size: 16px;
+        line-height: 30px;
+        text-align: center;
+    };
+    .twink{
+        -webkit-animation:twinkling 2s linear forwards;
+    };
+    @-webkit-keyframes twinkling {
+        0%{
+            opacity: .7;
+        }
+        100%{
+            opacity: 0;
+        }
+    }
+
+}
+
+.content-car-two {
+    @include box-sizing(border-box);
+    @extend %hundredPercent;
+    @include flexbox();
+    @include flex-direction(column);
+    
+    position: relative;
+    padding: 0 .16rem;
+
+    header {
+        @include flexbox();
+
+        border-bottom: 1px solid #979797;
+        padding: .2rem .3rem .11rem .01rem;
+        height: .3rem;
+        
+        p {
+            height: 100%;
+            line-height: .3rem;
+
+            color:#9b9b9b;
+            
+            &:nth-of-type(2) {
+                @include flex(1);
+            }
+
+            &:nth-of-type(3) {
+                font-weight: bold;
+                color: #fff;
+            }
+
+            img {
+                margin-right: .1rem;
+                height: 100%;
+                width: auto;
+            }
+        }
+    }
+
+    section {
+        position: relative;
+        @include flex();
+        width: 100%;
+
+        > div {
+            position: absolute;
+            left: 0;
+            top: 50%;
+            -webkit-transform: translateY(-50%);
+
+            width: 100%;
+
+            img {
+                position: relative;
+                left: 50%;
+                -webkit-transform: translateX(-50%);
+
+                width: auto;
+                height: .78rem;
+            }
+
+            p {
+                margin-top: .25rem;
+                
+                color: #fff;
+                font-size: 18px;
+                font-weight: bold;
+                text-align: center;
+            }
+
+            button {
+                position: relative;
+                left: 50%;
+                -webkit-transform: translateX(-50%);
+
+                margin-top: .39rem;
+                border: 0;
+                height: .45rem;
+                width: 1.5rem;
+
+                background: #f00;
+                color: #fff;
+                font-weight: bold;
+                font-size: .17rem;
+
+            }
+        }
+
+    }
+}
+
+.content-car-one {
+    @include flexbox();
+    @extend %hundredPercent;
+    
+    > div {
+        position: relative;
+        height: 100%;
+
+        > b{
+            display: block;
+
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translateX(-50%) translateY(-50%);
+            -webkit-transform: translateX(-50%) translateY(-50%);
+
+            font-weight: normal;
+        }
+    }
+
+    > div:nth-of-type(1) {
+        @include flex(2);
+        
+        > b {
+            width:100%;
+
+            > img {
+                display: block;
+
+                margin: 0 auto .14rem;
+                height: .6rem;
+                width: .6rem;
+            }
+            
+            > p {
+                margin-top: .14rem;
+                text-align: center;
+                
+                a {
+                    color: #c8c8c8;
+                }
+            }
+
+            > div{
+                
+                img {
+                    position: relative;
+                    left: 50%;
+                    transform: translateX(-50%);
+                    -webkit-transform: translateX(-50%);
+
+                    margin: 0 auto .15rem;
+                    height: .6rem;
+                    width: .6rem;
+                }
+
+                p {
+                    color: #a3a3a3;
+                    font-size: 14px;
+                    line-height: 14px;
+                    text-align: center;
+
+                    &:last-of-type {
+                        margin-top: .24rem;
+                    }
+                }
+            }
+        }
+    };
+
+    > div:nth-of-type(2) {
+        @include flex(3);
+
+        > b {
+            @include box-sizing(border-box);
+            padding: 0 .78rem 0 .3rem;
+            width:100%;
+
+            > button {
+                @extend %buttonSbmBase;
+
+                &:nth-of-type(1) {
+                    font-size: .17rem;
+                    font-weight: bold;
+
+                    color: #fff;
+                    background: #ff0000;
+                };
+
+                 &:nth-of-type(2) {
+                    color: #8b8b8a;
+                    background: transparent;
+                }
+            }
+            
+
+            section {
+                @extend %inputBaseCar;
+            }
+            .input-security{
+                position:relative;
+            }
+            .security-get-btn,.security-time-btn{
+                position:absolute;
+                top:-1px;
+                right:-1px;
+
+                width:.8rem;
+                height:.43rem;
+
+                background:#f00;
+                color:#fff;
+                line-height:.43rem;
+                text-align:center;
+            }
+            .security-get-btn{
+                cursor:pointer;
+            }
+            .security-time-btn{
+                display:none;
+            }
+
+
+            > em {
+                display: block;
+                margin-top: .17rem;
+                font-style:normal;
+                
+                > p {
+                    display: block;
+                    
+                    height: .14rem;
+
+                    color: #a3a3a3;
+                    font-size: 14px;
+                    font-style: normal;
+                    line-height: .14rem;
+                    
+                    &:nth-of-type(1) {
+                        @include flexbox();
+
+                        i:nth-of-type(2) {
+                            @include flex();
+                            display:block;
+                            width:100%;
+                        }
+                    }
+
+                    &:nth-of-type(2) {
+                        padding-bottom: .27rem;
+                        text-align: center;
+                    }
+                }
+            }
+        }
+    }
+}
+

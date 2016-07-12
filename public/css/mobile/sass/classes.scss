@@ -1,0 +1,375 @@
+@charset "utf-8";
+@mixin prefix($property, $value) {
+    @if map-get($setting, is-vendor-prefix) {
+        @each $vendor in map-get($setting, vendor-prefix) {
+            #{$vendor}#{$property}: $value;
+        }
+    }
+    #{$property}: $value;
+}
+@mixin calc($property, $value) {
+    @if map-get($setting, is-vendor-prefix) {
+        @each $vendor in map-get($setting, vendor-prefix) {
+            #{$property}: #{$vendor}calc(#{$value});
+        }
+    }
+    #{$property}: calc(#{$value});
+}
+
+@mixin gradient($type, $gradient...) {
+    @if map-get($setting, is-vendor-prefix) {
+        @each $vendor in map-get($setting, vendor-prefix) {
+            background-image: #{$vendor}#{$type}-gradient($gradient);
+        }
+    }
+    background-image: #{$type}-gradient($gradient);
+}
+
+@mixin responsive($media) {
+    @if not map-has-key($media-types, $media) {
+        @warn "#{$media} is not a known media type. Using portrait instead.";
+        $media: portrait;
+    }
+    @media #{map-get($media-types, $media)} {
+        @content;
+    }
+}
+@mixin yofont() {
+    @if map-get($ico, is-use) {
+        @font-face {
+            font-family: map-get($ico, font-name);
+            src:
+                url("#{map-get($ico,font-path)}#{map-get($ico,font-name)}.woff") format("woff"),
+                url("#{map-get($ico,font-path)}#{map-get($ico,font-name)}.ttf") format("truetype");
+        }
+        .yo-ico {
+            font-family: map-get($ico, font-name) !important;
+            font-style: normal;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+            vertical-align: middle;
+        }
+    }
+}
+
+@mixin filter($filter...) {
+    @include prefix(filter, $filter);
+}
+
+@mixin appearance($appearance: none) {
+    @include prefix(appearance, $appearance);
+}
+
+@mixin user-select($user-select: none) {
+    @include prefix(user-select, $user-select);
+}
+
+@mixin background-size($background-size...) {
+    @include prefix(background-size, $background-size);
+}
+
+@mixin background-clip($background-clip...) {
+    @include prefix(background-clip, $background-clip);
+}
+
+@mixin background-origin($background-origin...) {
+    @include prefix(background-origin, $background-origin);
+}
+
+@mixin box-sizing($box-sizing: border-box) {
+    @include prefix(box-sizing, $box-sizing);
+}
+
+@mixin border-radius($border-radius...) {
+    border-radius: $border-radius;
+    @include background-clip(padding-box !important);
+}
+
+@mixin transform($transform...) {
+    @include prefix(transform, $transform);
+}
+
+@mixin transform-origin($transform-origin) {
+    @include prefix(transform-origin, $transform-origin);
+}
+
+@mixin animation($animation...) {
+    @include prefix(animation, $animation);
+}
+
+@mixin transition($transition...){
+    $transitionable-prefixed-values: transform, transform-origin !default;
+    $vendor-list: ();
+    $list: ();
+
+    @if map-get($setting, is-vendor-prefix) {
+        @each $vendor in map-get($setting, vendor-prefix) {
+            @for $i from 1 through length($transition) {
+                @if type-of(nth($transition, $i)) == list {
+                    @if index($transitionable-prefixed-values, nth(nth($transition, $i), 1)){
+                        $vendor-list: join($vendor-list, #{$vendor}#{nth($transition, $i)}, $separator: comma);
+                    } @else {
+                        $vendor-list: join($vendor-list, #{nth($transition, $i)}, $separator: comma);
+                    }
+                }
+            }
+            #{$vendor}transition: $vendor-list;
+            $vendor-list: ();
+        }
+    }
+
+    @for $i from 1 through length($transition) {
+        $list: join($list, #{nth($transition, $i)}, $separator: comma);
+    }
+    transition: $list;
+}
+
+@mixin flexbox($flexbox: flex) {
+    @if $flexbox == flex {
+        display: -webkit-box;
+        display: -webkit-flex;
+        display: flex;
+    } @else {
+        display: -webkit-inline-box;
+        display: -webkit-inline-flex;
+        display: inline-flex;
+    }
+}
+
+@mixin flex($flex: 1, $direction: row) {
+    -webkit-box-flex: $flex;
+    -webkit-flex: $flex;
+    flex: $flex;
+    @if $direction == column {
+        height: .1px;
+    } @else {
+        width: .1px;
+    }
+}
+
+@mixin order($order: 1) {
+    -webkit-box-ordinal-group: $order;
+    -webkit-order: $order;
+    order: $order;
+}
+
+@mixin flex-direction($flex-direction: row) {
+    @if $flex-direction == row {
+        -webkit-box-orient: horizontal;
+        -webkit-box-direction: normal;
+    } @else if $flex-direction == column {
+        -webkit-box-orient: vertical;
+        -webkit-box-direction: normal;
+    } @else if $flex-direction == row-reverse {
+        -webkit-box-orient: horizontal;
+        -webkit-box-direction: reverse;
+    } @else if $flex-direction == column-reverse {
+        -webkit-box-orient: vertical;
+        -webkit-box-direction: reverse;
+    }
+    -webkit-flex-direction: $flex-direction;
+    flex-direction: $flex-direction;
+}
+
+@mixin flex-wrap($flex-wrap: nowrap) {
+    @if $flex-wrap == nowrap {
+        -webkit-box-lines: single;
+    } @else {
+        -webkit-box-lines: multiple;
+    }
+    -webkit-flex-wrap: $flex-wrap;
+    flex-wrap: $flex-wrap;
+}
+
+@mixin justify-content($justify-content: center) {
+    @if $justify-content == center {
+        -webkit-box-pack: center;
+    } @else if $justify-content == flex-start {
+        -webkit-box-pack: start;
+    } @else if $justify-content == flex-end {
+        -webkit-box-pack: end;
+    } @else if $justify-content == space-between {
+        -webkit-box-pack: justify;
+    }
+    -webkit-justify-content: $justify-content;
+    justify-content: $justify-content;
+}
+
+@mixin align-items($align-items: center) {
+    @if $align-items == center {
+        -webkit-box-align: center;
+    } @else if $align-items == flex-start {
+        -webkit-box-align: start;
+    } @else if $align-items == flex-end {
+        -webkit-box-align: end;
+    } @else {
+        -webkit-box-align: $align-items;
+    }
+    -webkit-align-items: $align-items;
+    align-items: $align-items;
+}
+
+@mixin align-self($align-self: center) {
+    -webkit-align-self: $align-self;
+    align-self: $align-self;
+}
+
+
+@mixin root-scroll($root-scroll: hidden) {
+    html,
+    body {
+        overflow: $root-scroll;
+        height: 100%;
+    }
+}
+
+@mixin overflow($overflow: auto) {
+    @if $overflow == auto {
+        overflow: auto;
+        -webkit-overflow-scrolling: touch;
+    } @else {
+        overflow: $overflow;
+    }
+}
+
+@mixin rect($width, $height) {
+    width: $width;
+    height: $height;
+}
+
+@mixin square($size) {
+    width: $size;
+    height: $size;
+}
+
+@mixin circle($size, $radius: 50%) {
+    @include square($size);
+    @include border-radius($radius);
+}
+
+@mixin fullscreen($z-index: null) {
+    position: absolute;
+    z-index: $z-index;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+}
+
+@mixin clearfix() {
+    &::after{
+        display: block;
+        overflow: hidden;
+        clear: both;
+        height: 0;
+        content: "\0020";
+    }
+}
+
+@mixin link($color: map-get($base, link-color)) {
+    color: $color;
+    cursor: pointer;
+    &:active {
+        opacity: .5;
+    }
+}
+
+@mixin wrap() {
+    word-wrap: break-word;
+    word-break: break-all;
+}
+
+@mixin ellipsis($ellipsis: true) {
+    overflow: hidden;
+    white-space: nowrap;
+    @if $ellipsis {
+        text-overflow: ellipsis;
+    }
+}
+
+@mixin texthide() {
+    overflow: hidden;
+    white-space: nowrap;
+    text-indent: 100%;
+}
+
+@mixin killspace() {
+    font-size: 0;
+    font-family: arial;
+}
+
+@mixin killspace-item() {
+    display: inline-block;
+    font-size: map-get($base, font-size);
+    font-family: map-get($base, font-family);
+}
+
+@mixin valign() {
+    @include killspace();
+    &::after{
+        overflow: hidden;
+        width: 0;
+        height: 100%;
+        content: "\0020";
+        vertical-align: middle;
+    }
+}
+
+@mixin valign-item() {
+    @include killspace-item();
+    vertical-align: middle;
+}
+
+@mixin alignment($width: 2rem, $height: 2rem) {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: $width;
+    height: $height;
+    margin-top: -$height/2;
+    margin-left: -$width/2;
+}
+
+@mixin border($border-width: 1px, $border-color: map-get($base, border-color), $border-style: solid, $radius: null) {
+    position: relative;
+    @if $border-width == null {
+        $border-width: 0;
+    }
+    border-radius: $radius;
+    &::after {
+        pointer-events: none;
+        position: absolute;
+        z-index: 999;
+        top: 0;
+        left: 0;
+        content: "\0020";
+        border-color: $border-color;
+        border-style: $border-style;
+        border-width: $border-width;
+        @include box-sizing(border-box);
+        @include responsive(retina1x) {
+            width: 100%;
+            height: 100%;
+            @if $radius != null {
+                border-radius: $radius;
+            }
+        }
+        @include responsive(retina2x) {
+            width: 200%;
+            height: 200%;
+            @include transform(scale(0.5));
+            @if $radius != null {
+                border-radius: $radius * 2;
+            }
+        }
+        @include responsive(retina3x) {
+            width: 300%;
+            height: 300%;
+            @include transform(scale(1/3));
+            @if $radius != null {
+                border-radius: $radius * 3;
+            }
+        }
+        @include transform-origin(0 0);
+    }
+}

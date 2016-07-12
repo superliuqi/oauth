@@ -1,0 +1,297 @@
+/* 外层边框 */
+.content-bg {
+    position: fixed;
+    width: 100%;
+    height: 100%;
+    background: #000;
+    opacity: .7;
+    filter:alpha(opacity=70);;
+}
+
+/* 跳转加载，注册成功，重新登录 */
+.content-two {
+    position: fixed;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    
+    margin: auto;
+    padding: 0 16px;
+    border-radius: 8px;
+    -moz-border-radius: 8px;
+
+    height: 480px;
+    width: 343px;
+
+    background: #f0f0f5;
+}
+.top_wrap {
+    border-bottom: 1px solid #a5a5a5;
+    padding: 30px 20px 10px 2px;
+    height: 30px;
+    line-height: 30px;
+    font-size: 14px;
+}
+.top_wrap img {
+    float: left;
+    margin-right: 10px;
+    height: 30px;
+    width: 30px;
+}
+.top_wrap span {
+    float: left;
+    color:#7b7b78;
+}
+.top_wrap b {
+    float: right;
+    color: #3e3e3e;
+}
+
+.mid_content {
+    margin-top: 66px;
+}
+.mid_wrap{
+    margin-top: 100px;
+}
+.mid_content img, .mid_wrap img {
+    margin: 0 auto;
+
+    width: auto;
+    height: 78px;
+}
+.mid_content p {
+    margin-top: 15px;
+}
+.mid_wrap p {
+    margin-top: 20px;
+}
+.mid_content p, .mid_wrap p {
+    color: #424242;
+    font-size: 18px;
+    font-weight: bold;
+    text-align: center;
+}
+.mid_content button {
+    display: block;
+    margin: 39px auto 0;
+    border: 0;
+    height: 45px;
+    width: 150px;
+
+    background: #f00;
+    color: #fff;
+    font-weight: bold;
+    font-size: 17px;
+
+}
+
+
+
+/* 替换手机，密码登录，修改密码，忘记密码 */
+.content-one {
+    position: fixed;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    
+    margin: auto;
+    padding: 18px 36px 0;
+    border-radius: 8px;
+    -moz-border-radius: 8px;
+    
+    height: 462px;
+    width: 303px;
+
+    background: #f0f0f5;
+}
+/* logo图片包含框 */
+.header-img {
+    height: 90px;
+}
+.header-img img {
+    margin: 0 auto;
+    height: 60px;
+    width: 60px;
+}
+
+/* input样式*/
+.input_base {
+    margin-bottom: 18px;
+    border: 1px solid #979797;
+    padding: 0 12px;
+    width: 277px;
+    height: 43px;
+    
+    font-size: 12px;
+}
+.input_base p{
+    float:left;
+    width: 73px;
+    height: 43px;
+
+    color: #888;
+    font-weight: bold;
+    line-height: 43px;
+}
+.input_base input {
+    float:left;
+    border: 0;
+    width: 204px;
+    height: 43px;
+    
+    background: transparent;
+    line-height: 43px;
+    outline: 0;
+}
+
+/* 去除Input记住密码时黄色背景 */
+input:-webkit-autofill { 
+    -webkit-box-shadow: 0 0 0px 1000px #f0f0f5 inset; 
+}
+
+/* 验证码的input样式 */
+.input-security{
+    position:relative;
+}
+.input-security input{
+    width:116px;
+}
+.security-get-btn,.security-time-btn{
+    position:absolute;
+    top:-1px;
+    right:-1px;
+
+    width:80px;
+    height:45px;
+
+    background:#f00;
+    color:#fff;
+    line-height:45px;
+    text-align:center;
+}
+.security-get-btn{
+    cursor:pointer;
+}
+.security-time-btn{
+    display:none;
+}
+
+/* 按钮样式 */
+.content-one button {
+    border:0;
+    height: 43px;
+    width: 303px;
+    
+    text-align:center;
+    line-height: 43px;
+}
+.content-one .btn_sbm, .content-one .btn_code_again {/* 提交按钮 */
+    font-size: 16px;
+    font-weight: bold;
+    color: #fff;
+    background: #ff0000;
+}
+.content-one .btn_code_again {
+    margin-bottom: 20px;
+}
+.btn_sbm,.btn_back{
+    cursor:pointer;
+}
+
+.content-one .btn_back {/* 返回按钮 */
+    font-size: 14px;
+    color: #8b8b8a;
+    background: transparent;
+}
+
+/* 密码登录 */
+.content-links{
+    padding-top: 18px;
+}
+.link-go-register {
+    padding: 25px 0 27px 0;
+    text-align: center;
+}
+.content-links, .link-go-register {
+    height: 14px;
+
+    font-size: 14px;
+    line-height: 14px;
+}
+.content-links a, .link-go-register a {
+    color: #a3a3a3;
+}
+.link-forget-psw, .link-change-phone {
+    float: left;
+}
+.link-login-security, .link-go-login {
+    float: right;
+}
+
+
+.btm-content img {
+    margin: 0 auto 8px;
+    height: 45px;
+    width: 45px;
+}
+.btm-content p {
+    color: #a3a3a3;
+    text-align: center;
+}
+
+/* 验证码登录 */
+.link-login-user{
+    padding-top: 18px;
+    height: 80px;
+    font-size: 14px;
+    line-height: 14px;
+    text-align: right;
+}
+.link-login-user a {
+    color: #a3a3a3;
+}
+
+/* 错误提示框 */
+.error-remind{
+    display: none;
+
+    position: absolute;
+    top: 0;
+    left: 0;
+
+    border-radius: 8px 8px 0 0;
+    -moz-border-radius: 8px 8px 0 0;
+    width: 100%;
+    height: 30px;
+
+    background: #000;
+    opacity: .7;
+    filter: alpha(opacity=70);
+
+    color: #fff;
+    font-size: 16px;
+    line-height: 30px;
+    text-align: center;
+}
+
+/* 切换注册方式,已有账号登录 */
+.change-register-type,.register-goto-login{
+    margin-top:18px;
+    height:14px;
+    line-height:14px;
+    font-size:14px;
+}
+.register-goto-login{
+    text-align:center;
+}
+.change-register-type a,.register-goto-login a{
+    color:#8b8b8a;
+}
+.link-left{
+    float:left;
+}
+.link-right{
+    float:right;
+}
